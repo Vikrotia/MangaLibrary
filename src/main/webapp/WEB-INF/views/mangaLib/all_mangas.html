@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Manga</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .manga {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #fff;
+            transition: all 0.3s ease;
+        }
+        .manga:hover {
+            background-color: #eaeaea;
+        }
+        .manga a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+        }
+        .create-link a {
+            display: inline-block;
+            text-decoration: none;
+            color: #333;
+            background-color: #ffcccc;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .create-link a:hover {
+            background-color: #ff9999;
+        }
+    </style>
+</head>
+<body>
+<div th:each="man : ${manga}" class="manga">
+    <a th:href="@{manga/{id}(id=${man.getId()})}" th:text="${man.getTitle() + ', ' + man.getAuthor()}"></a>
+</div>
+
+<div class="create-link">
+    <a href="manga/new">Add new manga</a>
+</div>
+</body>
+</html>

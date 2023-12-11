@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome page</title>
+    <style>
+        .wrapper {
+            display: flex;
+            justify-content: space-between;
+        }
+        .page-header {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .site-title {
+            font-size: 50px;
+            font-weight: bold;
+            color: #ff9999;
+        }
+        .site-description {
+            font-style: italic;
+            color: #666;
+        }
+        .square-block {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 20px;
+            width: 300px;
+            display: inline-block;
+        }
+
+        .square-block h2 {
+            background-color: #ff9999;
+            padding: 5px;
+            text-align: center;
+            margin: 0;
+        }
+        .manga a {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .person a {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .order a {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .left-block {
+            float: left;
+        }
+
+        .center-block {
+            margin: 0 auto;
+        }
+        .right-block {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-header">
+    <h1 class="site-title">Manga Library</h1>
+    <p class="site-description">Our service is dedicated to managing manga orders and library statistics. Register your manga orders and explore comprehensive library statistics effortlessly. Dive into the world of manga with ease and convenience, keeping track of your favorite titles and library activity.</p>
+</div>
+
+<div class="wrapper">
+<div class="square-block left-block">
+    <h2>Top Mangas</h2>
+    <div th:each="man : ${manga}" class="manga">
+        <a th:href="@{manga_lib/manga/{id}(id = ${man.getId()})}" th:text="${man.getTitle() + ', Number of Orders: ' + man.getOrder_count()}"></a>
+    </div>
+    <a th:href="@{manga_lib/manga}">All Mangas</a>
+</div>
+
+<div class="square-block center-block">
+    <h2>Top Active Users</h2>
+    <div th:each="per : ${person}" class="person">
+        <a  th:href="@{manga_lib/person/{id}(id = ${per.getId()})}" th:text="${per.getName() + ', Number of Orders: ' + per.getNumberOfOrders()}"></a>
+    </div>
+</div>
+
+<div class="square-block right-block">
+    <h2>Latest Orders</h2>
+    <div th:each="ord : ${order}" class="order">
+        <a  th:href="@{manga_lib/order/{id}(id = ${ord.getId()})}" th:text="${ord.getOrderDate()}"></a>
+    </div>
+</div>
+</div>
+
+
+</body>
+</html>

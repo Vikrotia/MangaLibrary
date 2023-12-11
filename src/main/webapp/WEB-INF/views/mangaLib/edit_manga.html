@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/manga/{id}(id=${manga.getId()})}" th:object="${manga}">
+    <label for="title">Enter title:</label>
+    <input type="text" th:field="*{title}" id="title"/>
+    <div class="error-message" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Has errors</div>
+
+    <label for="author">Enter author:</label>
+    <input type="text" th:field="*{author}" id="author"/>
+    <div class="error-message" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Has errors</div>
+
+    <label for="year">Enter year:</label>
+    <input type="text" th:field="*{year}" id="year"/>
+    <div class="error-message" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Has errors</div>
+
+    <label for="count">Enter all count:</label>
+    <input type="text" th:field="*{count}" id="count"/>
+    <div class="error-message" th:if="${#fields.hasErrors('count')}" th:errors="*{count}">Has errors</div>
+
+    <label for="order_count">Enter order count:</label>
+    <input type="text" th:field="*{order_count}" id="order_count"/>
+    <div class="error-message" th:if="${#fields.hasErrors('order_count')}" th:errors="*{order_count}">Has errors</div>
+
+    <input type="submit" value="Update"/>
+</form>
+<a th:href="@{/manga_lib/manga/{id} (id=${manga.getId()})}">Back</a>
+
+</body>
+</html>

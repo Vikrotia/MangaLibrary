@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manga</title>
+    <style>
+        .details {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px auto;
+            width: 300px;
+            text-align: center;
+        }
+        .details p {
+            margin: 5px 0;
+        }
+        .details a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #333;
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+        }
+        .details a:hover {
+            text-decoration: underline;
+        }
+        .manga-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff9999;
+            margin-bottom: 10px;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="details">
+    <h1 class="manga-title" th:text="${manga.getTitle()}"></h1>
+    <p>ID: <span th:text="${manga.getId()}"></span></p>
+    <p>Author: <span th:text="${manga.getAuthor()}"></span></p>
+    <p>Manga release year: <span th:text="${manga.getYear()}"></span></p>
+    <p>Count: <span th:text="${manga.getCount()}"></span></p>
+    <p>The number of orders: <span th:text="${manga.getOrder_count()}"></span></p>
+
+<!--        <a th:href="@{/manga/{id}/edit (id=${manga.getId()})}">Edit</a>-->
+    <form th:method="POST" th:action="@{/manga/{id}/edit (id=${manga.getId()})}">
+        <input type="hidden" name="_method" value="PUT"/>
+        <input type="submit" value="Edit"/>
+    </form>
+
+    <form th:method="DELETE" th:action="@{/manga_lib/manga/{id} (id=${manga.getId()})}">
+        <input type="submit" value="Delete"/>
+    </form>
+
+    <a href="/manga_lib/manga">All Mangas</a>
+</div>
+</body>
+</html>
